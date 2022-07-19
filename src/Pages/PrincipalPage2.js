@@ -83,6 +83,7 @@ function PrincipalPage2() {
 
     return (
         <div>
+            <div>teste</div>
             <HeaderComponent/>
             <div className="box-botao-adicionar">
                 <button type="button" className="botao-adicionar" onClick={addMesa}>
