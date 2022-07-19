@@ -13,12 +13,14 @@ function PrincipalPage2() {
             setTableList([...tableList, `mesa ${i}`])
         }
     }
-    console.log(tableList)
 
     const deleteMesa = (index) => {
-        setTableList(tableList.splice(index, 1))
+        let arr = Object.assign([],tableList)
+        arr.splice(index, 1)
+
+        setTableList(arr)
         console.log(index)
-        console.log(tableList)
+        console.log(arr)
     }
 
 
@@ -83,17 +85,16 @@ function PrincipalPage2() {
 
     return (
         <div>
-            <div>teste</div>
             <HeaderComponent/>
             <div className="box-botao-adicionar">
                 <button type="button" className="botao-adicionar" onClick={addMesa}>
                     <img src={AddLogo} alt=""/>
                 </button>
             </div>
-            <div>
+            <div className="gridBoxMesaComponent">
                 {
                     tableList.map((t, index) =>
-                        <div key={index}>
+                        <div key={index} className="mesaComponent">
                             <MesaComponent delete={(index) => deleteMesa(index)} index={index}/>
                         </div>
                     )}
