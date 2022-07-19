@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/boceta.iml" filepath="$PROJECT_DIR$/.idea/boceta.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PDV.iml" filepath="$PROJECT_DIR$/.idea/PDV.iml" />
     </modules>
   </component>
 </project>
