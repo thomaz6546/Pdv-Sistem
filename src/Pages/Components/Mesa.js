@@ -27,29 +27,25 @@ const MesaComponent = (props) => {
             description: "garana antartica"
         }
     ]
-
+    const [mesaAtual, setMesaAtual] = useState(null);
     const [produtosAdicionados, setProdutosAdicionados] = useState([]);
     const [list, setList] = useState(productsList)
     const [somarPrecoProdutos, setSomarPrecoProdutos] = useState(0)
-    const [show, setShow] = useState(false);
     const [target, setTarget] = useState(null);
-    const [showModal, setShowModal] = useState(false);
-    const [mesaAtual, setMesaAtual] = useState(null);
-    const mostrarModal = () => {
-        setShowModal(true);
-        setShow(false)
-    };
+    const [show, setShow] = useState(false);
+    const [showModalAtual, setShowModalAtual] = useState(false);
+
+    const handleShow = () => {
+        setShow(true)
+    }
     const handleClose = () => {
         setShow(false);
     }
-    const handleClick = (event) => {
-        setShow(!show);
-        setTarget(event.target);
-    };
-
-    const fecharModal = () => {
-        setShowModal(false);
-        props.delete(props.index)
+    const handleShowModalAtual = () => {
+        setShowModalAtual(true)
+    }
+    const handleCloseModalAtual = () => {
+        setShowModalAtual(false);
     }
 
     function contagemQuahntidadeProdutos(index, type, precoDoProduto) {
@@ -76,11 +72,10 @@ const MesaComponent = (props) => {
     }
 
     console.log(props.index)
-    console.log(mesaAtual)
 
     return (
         <div>
-            <Modal show={showModal} onHide={fecharModal}>
+            <Modal show={show} onHide={() => {handleClose()}}>
                 <Modal.Header className="fundo-b-modal" closeButton>
                     <Modal.Title>Mesa 01</Modal.Title>
                 </Modal.Header>
@@ -126,18 +121,18 @@ const MesaComponent = (props) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="b-no-modal" variant="danger" onClick={() => fecharModal()}>
+                    <Button className="b-no-modal" variant="danger" onClick={() => {handleClose()}}>
                         Fechar conta
                     </Button>
-                    <Button className="b-yes-modal" onClick={fecharModal}>
+                    <Button className="b-yes-modal" onClick={() => {handleClose()}}>
                         Cancelar
                     </Button>
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={mesaAtual !== null} onHide={() => setMesaAtual(null)}>
+            <Modal show={showModalAtual} onHide={() => {handleCloseModalAtual()}}>
                 <Modal.Header className="fundo-b-modal" closeButton>
-                    <Modal.Title>Mesa {mesaAtual}</Modal.Title>
+                    <Modal.Title>Mesa</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -221,10 +216,10 @@ const MesaComponent = (props) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="b-no-modal" variant="danger" onClick={() => fecharModal()}>
+                    <Button className="b-no-modal" variant="danger" onClick={() => {handleShowModalAtual()}}>
                         Fechar conta
                     </Button>
-                    <Button className="b-yes-modal" onClick={fecharModal}>
+                    <Button className="b-yes-modal" onClick={() => {handleShowModalAtual()}}>
                         Fechar
                     </Button>
                 </Modal.Footer>
@@ -242,33 +237,37 @@ const MesaComponent = (props) => {
                             </span>
                         </div>
 
-                        <Overlay show={show} target={target} placement="left">
-                            <Popover id="popover-basic">
-                                <Popover.Header>
-                                    Você deseja fechar esta comanda?
-                                </Popover.Header>
-                                <Popover.Body>
-                                    <div className="botoesPpver">
-                                        <Button className="buttonModalComandaSIM" onClick={mostrarModal}>
-                                            Sim
-                                        </Button>
-                                        <Button className="buttonModalComandaNAO" onClick={handleClose}>
-                                            Não
-                                        </Button>
-                                    </div>
-                                </Popover.Body>
-                            </Popover>
-                        </Overlay>
+                        {/*<Overlay show={show} target={target} placement="left">*/}
+                        {/*    <Popover id="popover-basic">*/}
+                        {/*        <Popover.Header>*/}
+                        {/*            Você deseja fechar esta comanda?*/}
+                        {/*        </Popover.Header>*/}
+                        {/*        <Popover.Body>*/}
+                        {/*            <div className="botoesPpver">*/}
+                        {/*                <Button className="buttonModalComandaSIM" onClick={mostrarModal}>*/}
+                        {/*                    Sim*/}
+                        {/*                </Button>*/}
+                        {/*                <Button className="buttonModalComandaNAO" onClick={handleClose}>*/}
+                        {/*                    Não*/}
+                        {/*                </Button>*/}
+                        {/*            </div>*/}
+                        {/*        </Popover.Body>*/}
+                        {/*    </Popover>*/}
+                        {/*</Overlay>*/}
                     </div>
                     <div className="d-flex justify-content-center">
                         <div className="box-produtos">
                             <div>
-                                <div onClick={() => setMesaAtual(props.index)}>
+                                <div onClick={() => {handleShowModalAtual()}}>
                                     Ver Mesa
                                 </div>
 
                                 <div>
                                     Fechar Conta
+                                </div>
+
+                                <div>
+                                    {somarPrecoProdutos}
                                 </div>
 
                             </div>
