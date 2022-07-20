@@ -37,8 +37,13 @@ const MesaComponent = (props) => {
 
     const handleShow = () => {
         setShow(true)
+        setShowModalAtual(false);
     }
     const handleClose = () => {
+        setShow(false);
+        props.delete(props.index)
+    }
+    const handleCloseModalFechar = () => {
         setShow(false);
     }
     const handleShowModalAtual = () => {
@@ -124,7 +129,7 @@ const MesaComponent = (props) => {
                     <Button className="b-no-modal" variant="danger" onClick={() => {handleClose()}}>
                         Fechar conta
                     </Button>
-                    <Button className="b-yes-modal" onClick={() => {handleClose()}}>
+                    <Button className="b-yes-modal" onClick={() => {handleCloseModalFechar()}}>
                         Cancelar
                     </Button>
                 </Modal.Footer>
@@ -216,10 +221,10 @@ const MesaComponent = (props) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="b-no-modal" variant="danger" onClick={() => {handleShowModalAtual()}}>
+                    <Button className="b-no-modal" variant="danger" onClick={() => {handleShow()}}>
                         Fechar conta
                     </Button>
-                    <Button className="b-yes-modal" onClick={() => {handleShowModalAtual()}}>
+                    <Button className="b-yes-modal" onClick={() => {handleCloseModalAtual()}}>
                         Fechar
                     </Button>
                 </Modal.Footer>

@@ -16,7 +16,7 @@ function PrincipalPage2() {
 
     const deleteMesa = (index) => {
         let arr = Object.assign([],tableList)
-        arr.splice(index, 1)
+        arr.splice(index,  + 1)
 
         setTableList(arr)
         console.log(index)
